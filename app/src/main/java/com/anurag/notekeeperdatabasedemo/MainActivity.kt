@@ -14,11 +14,13 @@ import com.anurag.notekeeperdatabasedemo.database.ListItem
 import com.anurag.notekeeperdatabasedemo.database.migrations.MIGRATION_1_2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+lateinit var appDatabase: AppDatabase
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val db = Room.databaseBuilder(applicationContext,AppDatabase::class.java,"noekeeper_Database")
+        appDatabase = Room.databaseBuilder(applicationContext,AppDatabase::class.java,"noekeeper_Database")
             .addMigrations(MIGRATION_1_2)
             .allowMainThreadQueries()
             .build()
@@ -38,8 +40,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val listDao = db.listDao()
-        val listitemDao = db.listItemDao()
+        /*val listDao = appDatabase.listDao()
+        val listitemDao = appDatabase.listItemDao()
 
         //val lists : List<com.anurag.notekeeperdatabasedemo.database.List> = listDao.getAll()
         //val listItem: List<ListItem> = listitemDao.getAll()
@@ -49,8 +51,8 @@ class MainActivity : AppCompatActivity() {
 
         listitemDao.insertAll(ListItem(uid = 4, listId = listDao.getAll()[0].uid, value = "Test Item!!"))
 
-        Log.e("lists", listDao.getListWithListItems()[0].ListItems.toString())
-        Log.e("listsItem", listitemDao.getAll().toString())
+        Log.e("lists", listDao.getListsWithListItems()[0].ListItems.toString())
+        Log.e("listsItem", listitemDao.getAll().toString())*/
 
 
 

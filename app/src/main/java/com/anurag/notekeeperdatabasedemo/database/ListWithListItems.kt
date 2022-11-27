@@ -8,9 +8,8 @@ data class ListWithListItems(
 
     @Relation(
         parentColumn = "uid",
-        entityColumn = "uid"
+        entityColumn = "listId"
     )
-
 
     val ListItems: kotlin.collections.List<ListItem>
 )

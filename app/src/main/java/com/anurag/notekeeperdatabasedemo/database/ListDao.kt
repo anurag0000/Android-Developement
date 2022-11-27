@@ -11,10 +11,10 @@ interface ListDao {
 
     @Transaction
     @Query("SELECT * FROM list")
-    fun getListWithListItems(): List<ListWithListItems>
+    fun getListsWithListItems(): List<ListWithListItems>
 
     @Insert
-    fun insertAll(vararg list: com.anurag.notekeeperdatabasedemo.database.List)
+    fun insertAll(vararg lists: com.anurag.notekeeperdatabasedemo.database.List)
 
     @Delete
     fun delete(list: com.anurag.notekeeperdatabasedemo.database.List)

@@ -3,7 +3,6 @@ package com.anurag.notekeeperdatabasedemo.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.anurag.notekeeperdatabasedemo.ListItem
 
 @Entity
 data class List(

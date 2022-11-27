@@ -18,8 +18,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.Navigation
-import com.anurag.notekeeperdatabasedemo.Lists
 import com.anurag.notekeeperdatabasedemo.R
+import com.anurag.notekeeperdatabasedemo.addList
 import com.anurag.notekeeperdatabasedemo.getSubItems
 
 class NewlistFragment : Fragment() {
@@ -34,7 +34,7 @@ class NewlistFragment : Fragment() {
         val textView: TextView = root.findViewById(R.id.text_newlist)
         val elements: TextView = root.findViewById(R.id.elements_adding)
         newlistViewModel.listItem.observe(viewLifecycleOwner, Observer {
-            textView.text = it.title
+            textView.text = it.list.title
             elements.text = getSubItems(it)
         })
         val editTitle: AppCompatEditText = root.findViewById(R.id.edit_title)
@@ -63,7 +63,7 @@ class NewlistFragment : Fragment() {
 
         val submit: Button = root.findViewById(R.id.submit_newlist)
         submit.setOnClickListener {
-            Lists.add(Lists.size, newlistViewModel.listItem.value!!)
+            addList(newlistViewModel.listItem.value!!)
             Navigation.findNavController(it).navigate(R.id.navigation_listcontainer)
         }
         val cancel: Button = root.findViewById(R.id.cancel_newlist)

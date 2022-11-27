@@ -4,23 +4,33 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.anurag.notekeeperdatabasedemo.ListItem
-import com.anurag.notekeeperdatabasedemo.Lists
+import com.anurag.notekeeperdatabasedemo.database.List
+import com.anurag.notekeeperdatabasedemo.database.ListItem
+import com.anurag.notekeeperdatabasedemo.database.ListWithListItems
+import com.anurag.notekeeperdatabasedemo.getListItems
+import com.anurag.notekeeperdatabasedemo.getLists
 
 
 class NewlistViewModel : ViewModel() {
 
-    private var _listItem = MutableLiveData<ListItem>().apply {
-        value = ListItem(Lists.size.toLong(), "List Name", mutableListOf())
+    private val lastId = getLists().last().list.uid
+    private val lastElementId = getListItems().last().uid
+
+    private var _listItem = MutableLiveData<ListWithListItems>().apply {
+        value = ListWithListItems(List(lastId + 1, "Example title"), mutableListOf())
     }
-    var listItem: LiveData<ListItem> = _listItem
+    var listItem: LiveData<ListWithListItems> = _listItem
     fun setTitle(title:String) {
-        _listItem.postValue(ListItem(Lists.size.toLong(), title, _listItem.value!!.elements))
+        _listItem.postValue(ListWithListItems(List(_listItem.value!!.list.uid, title), _listItem.value!!.ListItems))
     }
     fun addItem(item:String){
-        Log.e("test", item)
-        val elements = _listItem.value!!.elements
-        elements.add(item)
-        _listItem.postValue(ListItem(Lists.size.toLong(), _listItem.value!!.title, elements))
+        val currentVal = _listItem.value ?: return
+        val elements = currentVal.ListItems
+        _listItem.postValue(ListWithListItems(List(currentVal.list.uid, currentVal.list.title), elements.plus(
+            ListItem(
+            lastElementId + 1, currentVal.list.uid, item)
+        )))
+        Log.e("list uid", currentVal.list.uid.toString())
+        Log.e("list element uid", (getListItems().size + 1).toString())
     }
 }
