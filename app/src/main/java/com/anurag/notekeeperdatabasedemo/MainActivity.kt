@@ -10,6 +10,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.room.Database
 import androidx.room.Room
 import com.anurag.notekeeperdatabasedemo.database.AppDatabase
+import com.anurag.notekeeperdatabasedemo.database.ListItem
+import com.anurag.notekeeperdatabasedemo.database.migrations.MIGRATION_1_2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val db = Room.databaseBuilder(applicationContext,AppDatabase::class.java,"noekeeper_Database")
+            .addMigrations(MIGRATION_1_2)
             .allowMainThreadQueries()
             .build()
 
@@ -36,14 +39,33 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         val listDao = db.listDao()
-        val lists : List<com.anurag.notekeeperdatabasedemo.database.List> = listDao.getAll()
+        val listitemDao = db.listItemDao()
 
-        Log.e("lists", lists.toString())
-        //listDao.insertAll(com.anurag.notekeeperdatabasedemo.database.List(uid = lists.last().uid + 1, title = "Test Title"))
-        listDao.delete(lists[0])
+        //val lists : List<com.anurag.notekeeperdatabasedemo.database.List> = listDao.getAll()
+        //val listItem: List<ListItem> = listitemDao.getAll()
+
         Log.e("lists", listDao.getAll().toString())
+        Log.e("listsItem", listitemDao.getAll().toString())
+
+        listitemDao.insertAll(ListItem(uid = 4, listId = listDao.getAll()[0].uid, value = "Test Item!!"))
+
+        Log.e("lists", listDao.getListWithListItems()[0].ListItems.toString())
+        Log.e("listsItem", listitemDao.getAll().toString())
+
+
+
+        //listDao.insertAll(com.anurag.notekeeperdatabasedemo.database.List(uid = listDao.getAll().last().uid + 1, title = "Test Title"))
+        //listDao.delete(lists[0])
+        //Log.e("lists", listDao.getAll().toString())
 
 
 
     }
 }
+
+
+
+
+
+
+
