@@ -1,10 +1,8 @@
 package com.anurag.notekeeperdatabasedemo.ui.add
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +14,10 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.Navigation
 import com.anurag.notekeeperdatabasedemo.R
-import com.anurag.notekeeperdatabasedemo.addList
-import com.anurag.notekeeperdatabasedemo.getSubItems
+import com.anurag.notekeeperdatabasedemo.database.getSubItems
+
 
 class NewlistFragment : Fragment() {
 
@@ -35,7 +32,8 @@ class NewlistFragment : Fragment() {
         val elements: TextView = root.findViewById(R.id.elements_adding)
         newlistViewModel.listItem.observe(viewLifecycleOwner, Observer {
             textView.text = it.list.title
-            elements.text = getSubItems(it)
+            //elements.text = getSubItems(it)
+            elements.text = getSubItems(newlistViewModel.listItem.value!!)
         })
         val editTitle: AppCompatEditText = root.findViewById(R.id.edit_title)
         editTitle.addTextChangedListener(object :TextWatcher {
@@ -63,7 +61,9 @@ class NewlistFragment : Fragment() {
 
         val submit: Button = root.findViewById(R.id.submit_newlist)
         submit.setOnClickListener {
-            addList(newlistViewModel.listItem.value!!)
+            //addList(newlistViewModel.listItem.value!!)
+            //newlistViewModel.dataRepo.insert(newlistViewModel.listItem.value!!)
+            newlistViewModel.commit()
             Navigation.findNavController(it).navigate(R.id.navigation_listcontainer)
         }
         val cancel: Button = root.findViewById(R.id.cancel_newlist)

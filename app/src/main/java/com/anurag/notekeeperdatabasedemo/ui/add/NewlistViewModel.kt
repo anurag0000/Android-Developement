@@ -4,17 +4,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.anurag.notekeeperdatabasedemo.database.*
 import com.anurag.notekeeperdatabasedemo.database.List
-import com.anurag.notekeeperdatabasedemo.database.ListItem
-import com.anurag.notekeeperdatabasedemo.database.ListWithListItems
-import com.anurag.notekeeperdatabasedemo.getListItems
-import com.anurag.notekeeperdatabasedemo.getLists
 
 
 class NewlistViewModel : ViewModel() {
 
-    private val lastId = getLists().last().list.uid
-    private var lastElementId = if(getListItems().isNotEmpty()) getListItems().last().uid else 0
+    private val dataRepo: ListRepository = ListRepository()
+    private val listItemRepo: ListItemRepository = ListItemRepository()
+
+    private val lastId = if(dataRepo.getAll().isNotEmpty()) dataRepo.getAll().last().list.uid else 0
+    private var lastElementId = if(listItemRepo.getAll().isNotEmpty()) listItemRepo.getAll().last().uid else 0
     private  var indexInList = 0
 
     private var _listItem = MutableLiveData<ListWithListItems>().apply {
@@ -33,6 +33,10 @@ class NewlistViewModel : ViewModel() {
             lastElementId + 1, currentVal.list.uid, item,indexInList)
         )))
         Log.e("list uid", currentVal.list.uid.toString())
-        Log.e("list element uid", (getListItems().size + 1).toString())
+        Log.e("list element uid", (listItemRepo.getAll().size + 1).toString())
+    }
+
+    fun commit(){
+        dataRepo.insert(listItem.value!!)
     }
 }

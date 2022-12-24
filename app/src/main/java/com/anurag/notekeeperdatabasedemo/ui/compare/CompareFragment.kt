@@ -3,20 +3,23 @@ package com.anurag.notekeeperdatabasedemo.ui.compare
 import android.app.AlertDialog
 import android.graphics.Paint
 import android.os.Bundle
-import android.text.InputType
+//import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
+//import android.widget.EditText
 import android.widget.TextView
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+//import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import com.anurag.notekeeperdatabasedemo.ListsToCompare
+//import com.anurag.notekeeperdatabasedemo.ListsToCompare
 import com.anurag.notekeeperdatabasedemo.R
-import com.anurag.notekeeperdatabasedemo.getSubItems
+import com.anurag.notekeeperdatabasedemo.database.ListsToCompare
+import com.anurag.notekeeperdatabasedemo.database.getSubItems
+
+//import com.anurag.notekeeperdatabasedemo.getSubItems
 
 class CompareFragment : Fragment() {
 

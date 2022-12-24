@@ -12,33 +12,33 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.anurag.notekeeperdatabasedemo.*
 import com.anurag.notekeeperdatabasedemo.database.ListWithListItems
+import com.anurag.notekeeperdatabasedemo.database.ListsToCompare
+import com.anurag.notekeeperdatabasedemo.database.getSubItems
+import com.anurag.notekeeperdatabasedemo.ui.add.NewlistViewModel
 import kotlinx.android.synthetic.main.fragment_listcontainer.view.*
 import kotlinx.android.synthetic.main.fragment_listitem.view.*
 
 private lateinit var statusText : TextView;
 
-fun updateStatus() {
-    if(ListsToCompare.size == 0)  return
-    var status = "Selected: ".plus(ListsToCompare[0].list.title)
-    if(ListsToCompare.size == 2) {
-        status = status.plus(", ").plus(ListsToCompare[1].list.title)
-    }
-    statusText.text = status
-}
 
 class ListContainerFragment : Fragment() {
 
-    private var adapter = ListsAdapter(getLists());
+    //private var adapter = ListsAdapter(getLists());
+    private lateinit var adapter : ListsAdapter;
+    private lateinit var listContainerViewModel : ListContainerFragmentViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        listContainerViewModel = ViewModelProvider(this).get(ListContainerFragmentViewModel::class.java)
+        adapter = ListsAdapter(listContainerViewModel.dataRepo.getAll())
         val root = inflater.inflate(R.layout.fragment_listcontainer, container, false)
         root.all_lists.layoutManager = GridLayoutManager(context, 2)
         root.all_lists.adapter = adapter
@@ -49,7 +49,8 @@ class ListContainerFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, s1: Int, s2: Int, s3: Int) {
                 val search = s.toString()
-                val results = searchList(search)
+                //val results = searchList(search)
+                val results = listContainerViewModel.dataRepo.query(search)
                 Log.e("results", results.toString() )
                 root.all_lists.adapter = ListsAdapter(results)
             }
@@ -64,6 +65,16 @@ class ListContainerFragment : Fragment() {
         return root
     }
 }
+
+fun updateStatus() {
+    if(ListsToCompare.size == 0)  return
+    var status = "Selected: ".plus(ListsToCompare[0].list.title)
+    if(ListsToCompare.size == 2) {
+        status = status.plus(", ").plus(ListsToCompare[1].list.title)
+    }
+    statusText.text = status
+}
+
 class ListsAdapter(private val dataSet: List<ListWithListItems>) :
     RecyclerView.Adapter<ListsAdapter.ViewHolder>() {
 

@@ -4,9 +4,14 @@ import com.anurag.notekeeperdatabasedemo.database.ListItem
 import com.anurag.notekeeperdatabasedemo.database.ListWithListItems
 
 
-val ListsToCompare = mutableListOf<ListWithListItems>()
+/*val ListsToCompare = mutableListOf<ListWithListItems>()*/
 
-fun getLists() : List<ListWithListItems> {
+/*fun getSubItems(item: ListWithListItems):String {
+    val inListForm = item.ListItems.mapIndexed {idx, value -> (idx+1).toString().plus(". ").plus(value.value)}
+    return inListForm.joinToString("\n")
+}*/
+
+/*fun getLists() : List<ListWithListItems> {
     return appDatabase.listDao().getListsWithListItems()
 }
 
@@ -29,11 +34,8 @@ fun addList(list: ListWithListItems) {
 
 fun deleteList(list: ListWithListItems) {
     appDatabase.listDao().delete(list.list)
-}
+}*/
 
-fun getSubItems(item: ListWithListItems):String {
-    val inListForm = item.ListItems.mapIndexed {idx, value -> (idx+1).toString().plus(". ").plus(value.value)}
-    return inListForm.joinToString("\n")
-}
+
 
 
