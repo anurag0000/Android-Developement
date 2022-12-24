@@ -17,4 +17,7 @@ interface ListItemDao {
 
     @Delete
     fun delete(listitem: com.anurag.notekeeperdatabasedemo.database.ListItem)
+
+    @Update
+    fun update(listitem: ListItem)
 }

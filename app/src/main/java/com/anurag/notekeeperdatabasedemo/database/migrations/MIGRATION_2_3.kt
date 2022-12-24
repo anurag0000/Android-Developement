@@ -3,10 +3,11 @@ package com.anurag.notekeeperdatabasedemo.database.migrations
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-val MIGRATION_1_2 = object :Migration(1,2){
+val MIGRATION_2_3 = object : Migration(2,3){
 
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("CREATE TABLE 'listitems' ('uid' INTEGER NOT NULL, 'value' TEXT NOT NULL, 'listid' INTEGER NOT NULL, PRIMARY KEY('uid'))")
+
+        database.execSQL("ALTER TABLE 'ListItem' ADD COLUMN order_number INTEGER")
     }
 
 }

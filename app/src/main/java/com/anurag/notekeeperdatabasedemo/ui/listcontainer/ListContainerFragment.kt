@@ -2,12 +2,15 @@ package com.anurag.notekeeperdatabasedemo.ui.listcontainer
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +42,23 @@ class ListContainerFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_listcontainer, container, false)
         root.all_lists.layoutManager = GridLayoutManager(context, 2)
         root.all_lists.adapter = adapter
+        root.findViewById<AppCompatEditText>(R.id.search).addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, s1: Int, s2: Int, s3: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, s1: Int, s2: Int, s3: Int) {
+                val search = s.toString()
+                val results = searchList(search)
+                Log.e("results", results.toString() )
+                root.all_lists.adapter = ListsAdapter(results)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
         statusText = root.findViewById(R.id.status)
         updateStatus()
         return root

@@ -6,12 +6,13 @@
         <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/drawable/border.xml" value="0.145" />
         <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/drawable/border_transparent.xml" value="0.145" />
         <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/drawable/ic_add.xml" value="0.145" />
-        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_compare.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_delete.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_listcontainer.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_listitem.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_newlist.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_compare.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_delete.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_listcontainer.xml" value="0.22" />
+        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_listitem.xml" value="0.22" />
+        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/fragment_newlist.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/layout/new_list_fragment.xml" value="0.1796875" />
         <entry key="..\:/Android/NotekeeperDatabaseDemo/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>
     </option>

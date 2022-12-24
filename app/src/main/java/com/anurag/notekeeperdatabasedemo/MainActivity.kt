@@ -12,6 +12,7 @@ import androidx.room.Room
 import com.anurag.notekeeperdatabasedemo.database.AppDatabase
 import com.anurag.notekeeperdatabasedemo.database.ListItem
 import com.anurag.notekeeperdatabasedemo.database.migrations.MIGRATION_1_2
+import com.anurag.notekeeperdatabasedemo.database.migrations.MIGRATION_2_3
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 lateinit var appDatabase: AppDatabase
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         appDatabase = Room.databaseBuilder(applicationContext,AppDatabase::class.java,"noekeeper_Database")
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
             .allowMainThreadQueries()
             .build()
 
@@ -40,26 +41,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        /*val listDao = appDatabase.listDao()
-        val listitemDao = appDatabase.listItemDao()
 
-        //val lists : List<com.anurag.notekeeperdatabasedemo.database.List> = listDao.getAll()
-        //val listItem: List<ListItem> = listitemDao.getAll()
+          /*  getLists().forEach { list-> list.ListItems.forEachIndexed{index, listItem ->
+            listItem.order_number = index
+            appDatabase.listItemDao().update(listItem)
+        } }*/
 
-        Log.e("lists", listDao.getAll().toString())
-        Log.e("listsItem", listitemDao.getAll().toString())
-
-        listitemDao.insertAll(ListItem(uid = 4, listId = listDao.getAll()[0].uid, value = "Test Item!!"))
-
-        Log.e("lists", listDao.getListsWithListItems()[0].ListItems.toString())
-        Log.e("listsItem", listitemDao.getAll().toString())*/
-
-
-
-        //listDao.insertAll(com.anurag.notekeeperdatabasedemo.database.List(uid = listDao.getAll().last().uid + 1, title = "Test Title"))
-        //listDao.delete(lists[0])
-        //Log.e("lists", listDao.getAll().toString())
-
+        //getLists().forEach{list -> Log.e("Elements", list.ListItems.toString())}
 
 
     }
