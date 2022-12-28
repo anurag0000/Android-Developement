@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnResetStatus: Button
     lateinit var btnWorkUIThread: Button
 
+    lateinit var btnWorkerFail: Button
+    lateinit var btnWorkerRetry: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,6 +26,31 @@ class MainActivity : AppCompatActivity() {
         btnWorkStatus = findViewById(R.id.btnWorkStatus)
         btnResetStatus = findViewById(R.id.btnResetStatus)
         btnWorkUIThread = findViewById(R.id.btnWorkUIThread)
+
+        btnWorkerFail = findViewById(R.id.btnWorkerFail)
+        btnWorkerRetry = findViewById(R.id.btnWorkerRetry)
+
+
+        btnWorkerFail.setOnClickListener{
+            val workRequest = OneTimeWorkRequestBuilder<WorkerFail>()
+                .build()
+
+            workManger.enqueue(workRequest)
+        }
+
+        btnWorkerRetry.setOnClickListener {
+            val workRequest = OneTimeWorkRequestBuilder<WorkerRetry>()
+                .setBackoffCriteria(
+                    BackoffPolicy.LINEAR,
+                    10,
+                    TimeUnit.SECONDS
+                )
+                .build()
+
+            workManger.enqueue(workRequest)
+        }
+
+
 
         btnStartWork.setOnClickListener {
             //val workRequest = OneTimeWorkRequest.Builder(SimpleWorker::class.java).build()
@@ -64,4 +92,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+
 

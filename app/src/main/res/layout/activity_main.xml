@@ -30,4 +30,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Work on UI Thread" />
+    <Button
+        android:id="@+id/btnWorkerFail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Worker Fail" />
+    <Button
+        android:id="@+id/btnWorkerRetry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Worker Retry" />
 </LinearLayout>
