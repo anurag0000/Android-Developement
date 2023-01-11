@@ -40,4 +40,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Worker Retry" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <!--Work chains-->
+    <Button
+        android:id="@+id/btnSingleChainSucceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Single Chain Succeed" />
+
+    <Button
+        android:id="@+id/btnSingleChainFail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Single Chain Fail" />
+
+    <Button
+        android:id="@+id/btnGroupChainSucceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Group Chain Succeed" />
+
+    <Button
+        android:id="@+id/btnGroupChainFail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Group Chain Fail" />
+
+    <Button
+        android:id="@+id/btnMultipleChainSucceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Multiple Chain Succeed" />
+
+    <Button
+        android:id="@+id/btnMultipleChainFail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Multiple Chain Fail" />
 </LinearLayout>
